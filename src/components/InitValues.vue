@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { Ref, computed, inject } from "vue";
+import { PARAMS_SYMBOL, Params } from "../params";
 
-const props = defineProps<{
-  params: { A: number; B: number; C: number; D: number };
-}>();
+const params = inject<Ref<Params>>(PARAMS_SYMBOL);
+
 const P0 = computed(() =>
-  props.params.A && props.params.B ? props.params.A / props.params.B : undefined
+  params ? params.value.A / params.value.B : undefined
 );
 const V0 = computed(() =>
-  props.params.C && props.params.D ? props.params.C / props.params.D : undefined
+  params ? params.value.C / params.value.D : undefined
 );
 </script>
 
@@ -17,3 +17,4 @@ const V0 = computed(() =>
   <div>P(0) = A / B = {{ P0 }}</div>
   <div>V(0) = C / D = {{ V0 }}</div>
 </template>
+../params
