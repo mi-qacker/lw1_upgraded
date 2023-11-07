@@ -10,7 +10,7 @@ const A = ref(0.25);
 const B = ref(0.1);
 const C = ref(0.5);
 const D = ref(0.1);
-const H = ref(0.8);
+const H = ref(1);
 const TIME_MAX = ref(50);
 const params = computed(() => ({
   A: A.value,

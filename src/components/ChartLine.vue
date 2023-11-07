@@ -4,9 +4,10 @@ import { setPoints } from "../math/predator-prey";
 import type { Point } from "../math/types";
 import type { Params } from "../params";
 import { PARAMS_SYMBOL } from "../params";
-import { createPVChart } from "../chart";
+import { createPVChart, createPVtChart } from "../chart";
 
-const canvas = ref<HTMLCanvasElement | null>(null);
+const canvasPVt = ref<HTMLCanvasElement | null>(null);
+const canvasPV = ref<HTMLCanvasElement | null>(null);
 const params = inject<Ref<Params>>(PARAMS_SYMBOL);
 const pointsV: Point[] = [];
 const pointsP: Point[] = [];
@@ -22,12 +23,25 @@ if (params) {
 }
 
 onMounted(() => {
-  if (canvas.value) {
-    createPVChart(canvas.value, { pointsP, pointsV });
+  if (canvasPVt.value) {
+    createPVtChart(canvasPVt.value, { pointsP, pointsV });
+  }
+  if (canvasPV.value && params?.value) {
+    createPVChart(canvasPV.value, { pointsP, pointsV }, params.value);
   }
 });
 </script>
 
 <template>
-  <div style="width: 800px"><canvas ref="canvas"></canvas></div>
+  <div class="charts">
+    <div><canvas ref="canvasPVt"></canvas></div>
+    <div><canvas ref="canvasPV"></canvas></div>
+  </div>
 </template>
+
+<style scoped>
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+</style>
