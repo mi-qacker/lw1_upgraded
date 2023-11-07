@@ -9,6 +9,9 @@ export function createPVtChart(
   const labels = points.pointsP.map((p) => p.x);
   new Chart(canvas, {
     type: "line",
+    options: {
+      maintainAspectRatio: false,
+    },
     data: {
       labels,
       datasets: [
@@ -42,6 +45,7 @@ export function createPVChart(
     type: "scatter",
     options: {
       parsing: { xAxisKey: "P", yAxisKey: "V" },
+      maintainAspectRatio: false,
     },
     data: {
       datasets: [

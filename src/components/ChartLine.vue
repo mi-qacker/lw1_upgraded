@@ -41,6 +41,7 @@ onMounted(() => {
 
 <style scoped>
 .charts {
+  height: 600px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
